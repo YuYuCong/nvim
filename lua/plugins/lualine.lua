@@ -7,9 +7,6 @@ return {
       vim.list_extend(opts.sections.lualine_x, {
         "filesize",
       })
-      vim.list_extend(opts.sections.lualine_c, {
-        "lsp_progress",
-      })
     end,
   },
 }

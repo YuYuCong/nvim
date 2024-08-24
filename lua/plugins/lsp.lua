@@ -17,19 +17,29 @@ return {
   },
 
   {
-    "nvim-lspconfig",
+    "neovim/nvim-lspconfig",
     opts = {
-      on_attach = function(client, bufnr)
-        require("lsp-progress").on_attach(client, bufnr)
-      end,
+      servers = {
+        clangd = {
+          keys = {
+            { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+          },
+        },
+      },
     },
   },
 
+  -- 大工程需要lsp进度条
   {
     "linrongbin16/lsp-progress.nvim",
-    opts = {
-      client_progress_message = true,
-      client_progress_delay = 1000,
-    },
+    event = "VeryLazy",
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.sections.lualine_c, {
+        "lsp-progress",
+      })
+    end,
   },
 }
