@@ -33,13 +33,20 @@ return {
   {
     "linrongbin16/lsp-progress.nvim",
     event = "VeryLazy",
+    opts = {},
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.sections.lualine_c, {
-        "lsp-progress",
-      })
-    end,
+    opts = {
+      sections = {
+        lualine_x = {
+          function()
+            return require("lsp-progress").progress()
+          end,
+          "filesize",
+          "filetype",
+        },
+      },
+    },
   },
 }
