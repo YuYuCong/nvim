@@ -7,5 +7,5 @@ local opt = vim.opt
 -- 关闭相对行号
 opt.relativenumber = false
 
--- bigfix阈值大小
-vim.g.bigfile_size = 1024 * 1024 * 50 -- 50 MB
+-- bigfile阈值
+vim.g.bigfile_size = 1024 * 1024 * 5 -- 5 MB
