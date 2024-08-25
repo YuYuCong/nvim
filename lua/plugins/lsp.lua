@@ -1,3 +1,8 @@
+local enable = true
+if not enable then
+  return {}
+end
+
 return {
 
   -- LazyVim includes extra specs to properly setup lspconfig,

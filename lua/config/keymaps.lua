@@ -12,13 +12,25 @@ map("n", "<S-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 unmap("n", "<leader>L", { desc = "LazyVim Changelog" })
 
 -- Move
-map({ "n", "v" }, "<leader>h", "0", { desc = "(Move) to line start" })
-map({ "n", "v" }, "<leader>l", "$", { desc = "(Move) to line end" })
+map({ "n", "v" }, "<leader>h", "0", { desc = "(Move) to line start" }) -- 行首
+map({ "n", "v" }, "<leader>l", "$", { desc = "(Move) to line end" }) -- 行尾
+-- {"n", "v"}, "gg" 首行
+-- {"n", "v"}, "G" 末行
+
 map({ "n", "v" }, "<leader>j", "15j", { desc = "(Move) down 15 lines" })
 map({ "n", "v" }, "<leader>k", "15k", { desc = "(Move) up 15 lines" })
 
 map({ "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
 map({ "v" }, "<C-l>", "w", { desc = "(Move) one word" })
+
+-- 编辑
+-- "n", "u" 撤销编辑
+-- "n", "<C-r>" 撤销撤销的编辑
+map("n", "U", "<C-r>", { desc = "Reredo" })
+
+-- 搜索
+-- "n", "n" 下一个搜索结果
+-- "n", "N" 上一个搜索结果
 
 --------------------------------------------------------------------
 if true then
