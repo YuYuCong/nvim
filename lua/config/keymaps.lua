@@ -11,6 +11,15 @@ map("n", "<S-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 -- 禁用LazyVim Changelog
 unmap("n", "<leader>L", { desc = "LazyVim Changelog" })
 
+-- Move
+map({ "n", "v" }, "<leader>h", "0", { desc = "(Move) to line start" })
+map({ "n", "v" }, "<leader>l", "$", { desc = "(Move) to line end" })
+map({ "n", "v" }, "<leader>j", "15j", { desc = "(Move) down 15 lines" })
+map({ "n", "v" }, "<leader>k", "15k", { desc = "(Move) up 15 lines" })
+
+map({ "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
+map({ "v" }, "<C-l>", "w", { desc = "(Move) one word" })
+
 --------------------------------------------------------------------
 if true then
   return
