@@ -8,6 +8,9 @@ local unmap = vim.keymap.del
 -- 禁用LazyVim Changelog
 unmap("n", "<leader>L", { desc = "LazyVim Changelog" })
 
+-- 禁用J
+map("n", "<S-j>", "", { desc = "unused" })
+
 -- 窗口切换
 map("n", "<leader>j", "<C-w>j", { desc = "(Window) Go to Lower Window", remap = true })
 map("n", "<leader>k", "<C-w>k", { desc = "(Window) Go to Upper Window", remap = true })
@@ -37,6 +40,7 @@ map("n", "U", "<C-r>", { desc = "Reredo" })
 -- 搜索
 -- "n", "n" 下一个搜索结果
 -- "n", "N" 上一个搜索结果
+map("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Grep (Resume Last)" })
 
 --------------------------------------------------------------------
 if true then
