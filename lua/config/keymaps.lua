@@ -5,23 +5,29 @@
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
--- 禁用"J移动下一行到当前行"，改为"移动光标到下面的窗口"
-map("n", "<S-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-
 -- 禁用LazyVim Changelog
 unmap("n", "<leader>L", { desc = "LazyVim Changelog" })
 
+-- 窗口切换
+map("n", "<leader>j", "<C-w>j", { desc = "(Window) Go to Lower Window", remap = true })
+map("n", "<leader>k", "<C-w>k", { desc = "(Window) Go to Upper Window", remap = true })
+map("n", "<leader>h", "<C-w>h", { desc = "(Window) Go to Left Window", remap = true })
+map("n", "<leader>l", "<C-w>l", { desc = "(Window) Go to Right Window", remap = true })
+
+-- 窗口大小调整
+-- "n", <C-方向键>
+
+-- 文件切换
+-- "n" "H" 切换到左边文件
+-- "n" "L" 切换到右边文件
+
 -- Move
-map({ "n", "v" }, "<leader>h", "0", { desc = "(Move) to line start" }) -- 行首
-map({ "n", "v" }, "<leader>l", "$", { desc = "(Move) to line end" }) -- 行尾
+map({ "n", "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
+map({ "n", "v" }, "<C-l>", "w", { desc = "(Move) one word" })
 -- {"n", "v"}, "gg" 首行
 -- {"n", "v"}, "G" 末行
-
-map({ "n", "v" }, "<leader>j", "15j", { desc = "(Move) down 15 lines" })
-map({ "n", "v" }, "<leader>k", "15k", { desc = "(Move) up 15 lines" })
-
-map({ "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
-map({ "v" }, "<C-l>", "w", { desc = "(Move) one word" })
+map({ "n", "v" }, "gh", "0", { desc = "(Move) to line start" }) -- 行首
+map({ "n", "v" }, "gl", "$", { desc = "(Move) to line end" }) -- 行尾
 
 -- 编辑
 -- "n", "u" 撤销编辑
