@@ -1,20 +1,20 @@
 return {
 
-  -- tokyonight
+  -- -- tokyonight
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = true,
+  --   opts = { style = "moon" },
+  -- },
+
+  -- add gruvbox
+  { "ellisonleao/gruvbox.nvim" },
+
+  -- Configure LazyVim to load gruvbox
   {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "moon" },
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
   },
-
-  --  -- add gruvbox
-  --  { "ellisonleao/gruvbox.nvim" },
-
-  --  -- Configure LazyVim to load gruvbox
-  --  {
-  --    "LazyVim/LazyVim",
-  --    opts = {
-  --      colorscheme = "gruvbox",
-  --    },
-  --  },
 }

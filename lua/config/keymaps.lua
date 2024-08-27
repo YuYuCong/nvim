@@ -24,7 +24,7 @@ map("n", "<leader>l", "<C-w>l", { desc = "(Window) Go to Right Window", remap = 
 -- "n" "H" 切换到左边文件
 -- "n" "L" 切换到右边文件
 
--- Move
+-- 移动光标
 map({ "n", "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
 map({ "n", "v" }, "<C-l>", "w", { desc = "(Move) one word" })
 -- {"n", "v"}, "gg" 首行
@@ -37,10 +37,13 @@ map({ "n", "v" }, "gl", "$", { desc = "(Move) to line end" }) -- 行尾
 -- "n", "<C-r>" 撤销撤销的编辑
 map("n", "U", "<C-r>", { desc = "Reredo" })
 
+-- 注释
+-- "n", "gcc" 注释当前行
+-- "v", "gc" 注释所选代码块
+
 -- 搜索
 -- "n", "n" 下一个搜索结果
 -- "n", "N" 上一个搜索结果
-map("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Grep (Resume Last)" })
 
 --------------------------------------------------------------------
 if true then
