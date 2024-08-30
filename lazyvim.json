@@ -1,7 +1,8 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.lang.clangd",
-    "lazyvim.plugins.extras.coding.yanky"
+    "lazyvim.plugins.extras.lang.cmake"
   ],
   "news": {
     "NEWS.md": "6520"
