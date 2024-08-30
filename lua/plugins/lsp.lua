@@ -34,24 +34,24 @@ return {
     },
   },
 
-  -- 大工程需要lsp进度条
-  {
-    "linrongbin16/lsp-progress.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      sections = {
-        lualine_x = {
-          function()
-            return require("lsp-progress").progress()
-          end,
-          "filesize",
-          "filetype",
-        },
-      },
-    },
-  },
+  -- -- 大工程需要lsp进度条
+  -- {
+  --   "linrongbin16/lsp-progress.nvim",
+  --   event = "VeryLazy",
+  --   opts = {},
+  -- },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   opts = {
+  --     sections = {
+  --       lualine_x = {
+  --         function()
+  --           return require("lsp-progress").progress()
+  --         end,
+  --         "filesize",
+  --         "filetype",
+  --       },
+  --     },
+  --   },
+  -- },
 }
