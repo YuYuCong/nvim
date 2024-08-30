@@ -2,14 +2,16 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- <leader>sk 查看keymaps
+-- <leader>? 查看buffer keymaps
+
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
 -- 禁用LazyVim Changelog
 unmap("n", "<leader>L", { desc = "LazyVim Changelog" })
 
--- 禁用J
-map("n", "<S-j>", "", { desc = "unused" })
+-------------------------------------------界面切换-------------------------------------------
 
 -- 窗口切换
 map("n", "<leader>j", "<C-w>j", { desc = "(Window) Go to Lower Window", remap = true })
@@ -24,6 +26,7 @@ map("n", "<leader>l", "<C-w>l", { desc = "(Window) Go to Right Window", remap = 
 -- "n" "H" 切换到左边文件
 -- "n" "L" 切换到右边文件
 
+-------------------------------------------编辑-------------------------------------------
 -- 移动光标
 map({ "n", "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
 map({ "n", "v" }, "<C-l>", "w", { desc = "(Move) one word" })
@@ -37,13 +40,46 @@ map({ "n", "v" }, "gl", "$", { desc = "(Move) to line end" }) -- 行尾
 -- "n", "<C-r>" 撤销撤销的编辑
 map("n", "U", "<C-r>", { desc = "Reredo" })
 
+-- 移动整行
+-- "n", "<A-j>" move current line down
+-- "n", "<A-k>" move current line up
+-- 禁用J
+map("n", "<S-j>", "", { desc = "Unused" })
+
 -- 注释
 -- "n", "gcc" 注释当前行
 -- "v", "gc" 注释所选代码块
 
+-------------------------------------------搜索-------------------------------------------
 -- 搜索
+-- "n", "/" 在当前文件搜索字符串
 -- "n", "n" 下一个搜索结果
 -- "n", "N" 上一个搜索结果
+--
+-- double space (telescope)filename search
+
+-- 标记书签
+-- "n", "ma" 本地标记书签当前行'a'
+-- "n", "mA" 全局标记书签当前行'A'
+-- "n", "<leader>sm" 列出所有书签
+-- "n", "<leader>sma" 前往书签a
+-- "n", "`" 列出所有书签
+-- "n", "`a" 前往书签a
+-- 删除书签
+-- cmdline: delmarks!  删除所有书签
+-- cmdline: delmarks a 删除书签a
+
+-------------------------------------------lsp-------------------------------------------
+-- gd 切换定义
+-- gr 前往引用
+-- <leader>xx 打开静态代码问题分析列表
+-- <leader>cs 打开symbols列表
+
+-------------------------------------------git-------------------------------------------
+-- <leader>gb Blame当前行
+-- <leader>gB Blame当前文件
+-- <leader>ghd 查看当前文件的编辑diff
+-- <leader>ghs 暂存当前代码块
 
 --------------------------------------------------------------------
 if true then
