@@ -85,6 +85,17 @@ map("n", "<S-j>", "", { desc = "Unused" })
 -- <leader>xx 打开静态代码问题分析列表
 -- <leader>cs 打开symbols列表
 
+-- lsp.lua中自定义的快捷键
+-- "n", "cf" 代码改动部分格式化
+-- "n", "<leader>cf" 代码全文格式化
+-- "n", "<leader>uf" 临时切换代码自动格式化
+
+-- 代码补全
+-- "i", "<C-n>", Next code suggestion，也可以直接使用下键
+-- "i", "<C-p>", Prev code suggestion，也可以直接使用上键
+-- "i", "<C-n>", 打开补全弹窗
+-- "i", "<C-e>", 退出补全弹窗
+
 -------------------------------------------git-------------------------------------------
 -- <leader>gb Blame当前行
 -- <leader>gB Blame当前文件
