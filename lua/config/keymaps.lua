@@ -59,7 +59,14 @@ map("n", "<S-j>", "", { desc = "Unused" })
 -- "n", "n" 下一个搜索结果
 -- "n", "N" 上一个搜索结果
 --
+-- "n", "*" 向前搜索光标下的单词
+-- "n", "#" 向后搜索光标下的单词
+--
 -- double space (telescope)filename search
+--
+-- 搜索替换
+-- cmdline:%s/old/new/gc 当前文件内搜索替换old到new，且在替换前确认每个动作
+-- cmdline:%s/old/new/g 当前文件内搜索替换old到new，直接替换
 
 -- 标记书签
 -- "n", "ma" 本地标记书签当前行'a'
@@ -69,8 +76,8 @@ map("n", "<S-j>", "", { desc = "Unused" })
 -- "n", "`" 列出所有书签
 -- "n", "`a" 前往书签a
 -- 删除书签
--- cmdline: delmarks!  删除所有书签
--- cmdline: delmarks a 删除书签a
+-- cmdline:delmarks a 删除书签a
+-- cmdline:delmarks!  删除所有书签
 
 -------------------------------------------lsp-------------------------------------------
 -- gd 切换定义
