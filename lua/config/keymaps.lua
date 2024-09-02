@@ -43,6 +43,11 @@ map({ "n", "v" }, "gl", "$", { desc = "(Move) to line end" }) -- 行尾
 -- "n", "<C-r>" 撤销撤销的编辑
 map("n", "U", "<C-r>", { desc = "Reredo" })
 
+-- 删除与改写第一个键有差别，第二个键意义一致
+-- 删除与改写的差别在于：删除后保持在n模式，改写后进入i模式
+-- "n", "d+某个键" 删除
+-- "n", "c+某个键" 改写
+
 -- 移动整行
 -- "n", "<A-j>" move current line down
 -- "n", "<A-k>" move current line up
