@@ -26,6 +26,9 @@ map("n", "<leader>l", "<C-w>l", { desc = "(Window) Go to Right Window", remap = 
 -- "n" "H" 切换到左边文件
 -- "n" "L" 切换到右边文件
 
+-- "n" "<leader>`" 切换到上一个光标所在的文件
+-- "n" "``" Back to line in current buffer where jumped from
+
 -- 窗口关闭
 -- <leader>wq
 

@@ -10,6 +10,7 @@ return {
       -- 更改部分配置
       sections = {
         lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
         lualine_x = { "filesize", "filetype" },
       },
     },
