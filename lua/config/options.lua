@@ -8,7 +8,9 @@ local opt = vim.opt
 opt.relativenumber = false
 
 -- bigfile阈值
-vim.g.bigfile_size = 1024 * 1024 * 5 -- 5 MB
+vim.g.bigfile_size = 1024 * 1024 * 1 -- 1 MB
+
+vim.g.lazyvim_picker = "fzf"
 
 --------------------------------------------------------------------
 if true then

@@ -1,4 +1,4 @@
-local enable = true
+local enable = false
 if not enable then
   return {}
 end
@@ -6,6 +6,7 @@ end
 return {
   {
     "nvim-telescope/telescope.nvim",
+    vscode = true,
     -- add user defined keymaps
     keys = {
       {

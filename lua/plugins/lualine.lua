@@ -6,11 +6,18 @@ end
 return {
   {
     "nvim-lualine/lualine.nvim",
+    vscode = true,
     opts = {
       -- 更改部分配置
       sections = {
         lualine_b = { "branch", "diff", "diagnostics" },
-        -- lualine_c = { "filename" },
+        lualine_c = {
+          {
+            "filename",
+            file_status = true,
+            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+          },
+        },
         lualine_x = { "filesize", "filetype" },
       },
     },
