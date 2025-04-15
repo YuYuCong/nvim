@@ -18,29 +18,78 @@ map("n", "<leader>j", "<C-w>j", { desc = "(Window) Go to Lower Window", remap = 
 map("n", "<leader>k", "<C-w>k", { desc = "(Window) Go to Upper Window", remap = true })
 map("n", "<leader>h", "<C-w>h", { desc = "(Window) Go to Left Window", remap = true })
 map("n", "<leader>l", "<C-w>l", { desc = "(Window) Go to Right Window", remap = true })
+-- 或者 C-hjkl
 
 -- 窗口大小调整
 -- "n", <C-方向键>
+-- todo(congyu) vscode
 
 -- 文件切换
 -- "n" "H" 切换到左边文件
 -- "n" "L" 切换到右边文件
+if vim.g.vscode then
+  -- 切换到前一个文件
+  map("n", "H", "<cmd>lua require('vscode').action('workbench.action.previousEditorInGroup')<CR>", { desc = "Switch to Previous File in Group" })
+  -- 切换到后一个文件
+  map("n", "L", "<cmd>lua require('vscode').action('workbench.action.nextEditorInGroup')<CR>", { desc = "Switch to Next File in Group" })
+end
+
+-- pin文件
+-- "n" "bp" 固定当前文件
+-- "n" "bp" 取消固定当前文件
+if vim.g.vscode then
+  map("n", "<leader>bp", "<cmd>lua require('vscode').action('workbench.action.pinEditor')<CR>", { desc = "Pin Current File" })
+end
 
 -- "n" "<leader>`" 切换到上一个光标所在的文件
 -- "n" "``" Back to line in current buffer where jumped from
 -- "n" "<leader>," 在当前打开的文件中切换
+-- todo(congyu) vscode
 
 -- 窗口关闭
 -- <leader>wq
+if vim.g.vscode then
+  map("n", "<leader>wq", "<cmd>lua require('vscode').action('workbench.action.closeEditorsInGroup')<CR>")
+end
+
+-- 文件关闭
+-- <leader> bd 关闭当前文件
+if vim.g.vscode then
+  map("n", "<leader>bd", "<cmd>lua require('vscode').action('workbench.action.closeActiveEditor')<CR>")
+end
 
 -- 进入某子文件夹
 -- 文件tree界面，光标选择在某文件夹上
--- <leader> >
+-- .
+
+-- 打开目录树
+-- "n", "<leader>e" 打开或关闭目录树
+if vim.g.vscode then
+  -- 打开或关闭目录树
+  map("n", "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>", { desc = "Toggle Explorer" })
+end
+
+-- 打开git变更目录
+-- "n", "<leader>gs" 打开git status
+-- "n", "<leader>ghr" 撤销代码块更改
+if vim.g.vscode then
+  -- 切换到 Git 更改视图
+  map("n", "<leader>gs", "<cmd>lua require('vscode').action('workbench.scm.focus')<CR>", { desc = "Switch to Git Changes" })
+  -- 撤销暂存的代码块
+  map("n", "<leader>ghr", "<cmd>lua require('vscode').action('git.revertSelectedRanges')<CR>", { desc = "Revert Selected Block" })
+end
+
+-- terminal
+map("n", "<leader>tt", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+if vim.g.vscode then
+  -- 打开终端
+  map("n", "<leader>tt", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>", { desc = "Toggle Terminal" })
+end
 
 -------------------------------------------编辑-------------------------------------------
 -- 移动光标
-map({ "n", "v" }, "<C-h>", "b", { desc = "(Move) back one word" })
-map({ "n", "v" }, "<C-l>", "w", { desc = "(Move) one word" })
+-- {"n", "v"}, "b", { desc = "(Move) back one word" }
+-- {"n", "v"}, "w", { desc = "(Move) one word" }
 -- {"n", "v"}, "gg" 首行
 -- {"n", "v"}, "G" 末行
 map({ "n", "v" }, "gh", "0", { desc = "(Move) to line start" }) -- 行首
@@ -50,6 +99,9 @@ map({ "n", "v" }, "gl", "$", { desc = "(Move) to line end" }) -- 行尾
 -- "n", "u" 撤销编辑
 -- "n", "<C-r>" 撤销撤销的编辑
 map("n", "U", "<C-r>", { desc = "Reredo" })
+if vim.g.vscode then
+  map("n", "U", "<cmd>lua require('vscode').action('redo')<CR>", { desc = "Reredo" })
+end
 
 -- 删除与改写第一个键有差别，第二个键意义一致
 -- 删除与改写的差别在于：删除后保持在n模式，改写后进入i模式
@@ -69,6 +121,10 @@ map("n", "<S-j>", "", { desc = "Unused" })
 -- 折叠
 -- "n", "zc" 折叠当前代码块
 -- "n", "zo" 打开折叠的代码快
+if vim.g.vscode then
+  map("n", "zc", "<cmd>lua require('vscode').action('editor.fold')<CR>", { desc = "Fold Code Block" })
+  map("n", "zo", "<cmd>lua require('vscode').action('editor.unfold')<CR>", { desc = "Unfold Code Block" })
+end
 
 -- 错别字检查
 -- "n", "<leader>us" 切换检查开关
@@ -104,11 +160,24 @@ map("n", "<S-j>", "", { desc = "Unused" })
 -- gd 切换定义
 -- gr 前往引用
 -- <leader>xx 打开静态代码问题分析列表
+-- <leader>xX 打开静态代码问题分析列表-当前文件
 -- <leader>cs 打开symbols列表
+-- <leader>ch 切换头文件与cpp文件
+if vim.g.vscode then
+  -- 转到引用
+  map("n", "gr", "<cmd>lua require('vscode').action('editor.action.goToReferences')<CR>", { desc = "Go to References" })
+  -- 切换头文件与cpp文件
+  map("n", "<leader>ch", "<cmd>lua require('vscode').action('clangd.switchheadersource')<CR>", { desc = "Switch Between Header and Source File" })
+  -- 打开问题列表
+  map("n", "<leader>xx", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", { desc = "Open Problems List" })
+  -- 打开当前文件的问题列表
+  map("n", "<leader>xX", "<cmd>lua require('vscode').action('workbench.actions.view.problems.focus')<CR>", { desc = "Focus Problems for Current File" })
+end
 
 -- lsp.lua中自定义的快捷键
 -- "n", "cf" 代码改动部分格式化
 -- "n", "<leader>cf" 代码全文格式化
+-- todo(congyu) vscode
 -- "n", "<leader>uf" 临时切换代码自动格式化
 
 -- 代码补全

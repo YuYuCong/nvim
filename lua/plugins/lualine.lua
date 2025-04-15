@@ -6,7 +6,7 @@ end
 return {
   {
     "nvim-lualine/lualine.nvim",
-    vscode = true,
+    vscode = false,
     opts = {
       -- 更改部分配置
       sections = {
