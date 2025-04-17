@@ -35,10 +35,15 @@ if vim.g.vscode then
 end
 
 -- pin文件
--- "n" "bp" 固定当前文件
--- "n" "bp" 取消固定当前文件
+-- "n" "<leader>bp" 固定当前文件
+-- "n" "<leader>bp" 取消固定当前文件
+-- "n" "<leader>bu" 关闭unpinned文件
+map("n", "<leader>bu", "<leader>bP", { desc = "Close Unpinned Editors", remap = true })
+-- "n" "<leader>bo" 关闭除当前文件外的其他文件
 if vim.g.vscode then
   map("n", "<leader>bp", "<cmd>lua require('vscode').action('workbench.action.pinEditor')<CR>", { desc = "Pin Current File" })
+  map("n", "<leader>bP", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>", { desc = "Unpin Current File" })
+  map("n", "<leader>bu", "<cmd>lua require('vscode').action('workbench.action.closeOtherEditors')<CR>", { desc = "Close Unpinned Editors" })
 end
 
 -- "n" "<leader>`" 切换到上一个光标所在的文件
@@ -66,23 +71,16 @@ end
 -- "n", "<leader>e" 打开或关闭目录树
 if vim.g.vscode then
   -- 打开或关闭目录树
+  -- 同vscode ctrl+shift+e, vscode中再次按可以切换回编辑器中
   map("n", "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>", { desc = "Toggle Explorer" })
 end
 
--- 打开git变更目录
--- "n", "<leader>gs" 打开git status
--- "n", "<leader>ghr" 撤销代码块更改
-if vim.g.vscode then
-  -- 切换到 Git 更改视图
-  map("n", "<leader>gs", "<cmd>lua require('vscode').action('workbench.scm.focus')<CR>", { desc = "Switch to Git Changes" })
-  -- 撤销暂存的代码块
-  map("n", "<leader>ghr", "<cmd>lua require('vscode').action('git.revertSelectedRanges')<CR>", { desc = "Revert Selected Block" })
-end
 
 -- terminal
 map("n", "<leader>tt", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
 if vim.g.vscode then
   -- 打开终端
+  -- 同vscode ctrl+shift+t, vscode中再次按可以切换回编辑器中
   map("n", "<leader>tt", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>", { desc = "Toggle Terminal" })
 end
 
@@ -107,6 +105,12 @@ end
 -- 删除与改写的差别在于：删除后保持在n模式，改写后进入i模式
 -- "n", "d+某个键" 删除
 -- "n", "c+某个键" 改写
+
+-- 复制粘贴
+-- yaw 复制单词与周围的空格
+-- yiw 复制单词
+-- yy 复制整行
+-- p 粘贴
 
 -- 移动整行
 -- "n", "<A-j>" move current line down
@@ -133,6 +137,7 @@ end
 -------------------------------------------搜索-------------------------------------------
 -- 搜索
 -- "n", "/" 在当前文件搜索字符串
+-- "n", "<leader>/" 全局搜索
 -- "n", "n" 下一个搜索结果
 -- "n", "N" 上一个搜索结果
 --
@@ -140,6 +145,8 @@ end
 -- "n", "#" 向后搜索光标下的单词
 --
 -- double space (telescope)filename search
+-- Ctrl n 搜索列表的下一条
+-- Ctrl p 搜索列表的上一条
 --
 -- 搜索替换
 -- cmdline:%s/old/new/gc 当前文件内搜索替换old到new，且在替换前确认每个动作
@@ -169,9 +176,12 @@ if vim.g.vscode then
   -- 切换头文件与cpp文件
   map("n", "<leader>ch", "<cmd>lua require('vscode').action('clangd.switchheadersource')<CR>", { desc = "Switch Between Header and Source File" })
   -- 打开问题列表
-  map("n", "<leader>xx", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", { desc = "Open Problems List" })
+  -- 同vscode ctrl+shift+x，vscode中再次按可以切换回编辑器中
+  map("n", "<leadeGetRegionCandidateGridsr>xx", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", { desc = "Open Problems List" })
   -- 打开当前文件的问题列表
   map("n", "<leader>xX", "<cmd>lua require('vscode').action('workbench.actions.view.problems.focus')<CR>", { desc = "Focus Problems for Current File" })
+  -- 快速前往symbols
+  -- ctrl+shift+o
 end
 
 -- lsp.lua中自定义的快捷键
@@ -190,7 +200,27 @@ end
 -- <leader>gb Blame当前行
 -- <leader>gB Blame当前文件
 -- <leader>ghd 查看当前文件的编辑diff
+-- <leader>ghr 回退当前代码块
 -- <leader>ghs 暂存当前代码块
+if vim.g.vscode then
+  -- 回退当前代码块
+  map("n", "<leader>ghr", "<cmd>lua require('vscode').action('git.revertSelectedRanges')<CR>", { desc = "Revert Selected Block" })
+  -- 暂存当前代码块
+  map("n", "<leader>ghs", "<cmd>lua require('vscode').action('git.diff.stageHunk')<CR>", { desc = "Git stage cur block" })
+ 
+  -- <Alt-n> 下一个代码更改块
+  -- <Alt-p> 上一个代码更改块
+end
+
+-- 打开git变更目录
+-- "n", "<leader>gs" 打开git status
+-- "n", "<C-n>" 选择git变更列表的下一个文件
+-- "n", "<C-p>" 选择git变更列表的上一个文件
+if vim.g.vscode then
+  -- 打开git变更目录
+  -- 同vscode ctrl+shift+g，vscode中再次按可以切换回编辑器中
+  map("n", "<leader>gs", "<cmd>lua require('vscode').action('workbench.scm.focus')<CR>", { desc = "Switch to Git Changes" })
+end
 
 --------------------------------------------------------------------
 if true then

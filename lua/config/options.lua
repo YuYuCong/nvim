@@ -12,6 +12,21 @@ vim.g.bigfile_size = 1024 * 1024 * 1 -- 1 MB
 
 vim.g.lazyvim_picker = "fzf"
 
+-- 系统剪贴板设置
+opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = "xclip",
+  copy = {
+    ["+"] = "xclip -selection clipboard -i",
+    ["*"] = "xclip -selection primary -i",
+  },
+  paste = {
+    ["+"] = "xclip -selection clipboard -o",
+    ["*"] = "xclip -selection primary -o",
+  },
+  cache_enabled = 1,
+}
+
 --------------------------------------------------------------------
 if true then
   return
