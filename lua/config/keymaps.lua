@@ -162,6 +162,10 @@ end
 -- 删除书签
 -- cmdline:delmarks a 删除书签a
 -- cmdline:delmarks!  删除所有书签
+if vim.g.vscode then
+  map("n", "<leader>m",  "<cmd>lua require('vscode').action('bookmarks.toggle')<CR>", { desc = "Toggle bookmark"})
+  map("n", "<leader>sm",  "<cmd>lua require('vscode').action('bookmarks.listFromAllFiles')<CR>", { desc = "List all bookmarks"})
+end
 
 -------------------------------------------lsp-------------------------------------------
 -- gd 切换定义
@@ -195,6 +199,9 @@ end
 -- "i", "<C-p>", Prev code suggestion，也可以直接使用上键
 -- "i", "<C-n>", 打开补全弹窗
 -- "i", "<C-e>", 退出补全弹窗
+
+-- hover
+-- "n", "<S-k>", 打开hover信息
 
 -------------------------------------------git-------------------------------------------
 -- <leader>gb Blame当前行
